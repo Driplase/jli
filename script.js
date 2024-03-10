@@ -1,3 +1,11 @@
+const l = location.hostname;
+document.title = `${document.title} | ${l}`
+
+if (l === "j.hide.li") {
+    document.getElementById("o0").innerHTML = null;
+    document.getElementById("logo").src = "/assets/logo/jhideli.png";
+}
+
 var spas = document.getElementById("ctj");
 var bodies = document.getElementById("bodi");
 var spasstyl = spas.style;
