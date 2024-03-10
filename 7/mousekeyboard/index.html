@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css">
+        <title>Text input using only mouse</title>
+        <meta name="application-name" content="MouseKeyboard? | jli.pages.dev">
+        <meta name="description" content="Text input using only mouse">
+    </head>
+    <body>
+        <p>Rotate the mouse wheel to select text:</p>
+        <h1 id="sT">A</h1>
+        <textarea id="iT" placeholder="Click to enter the selected characters..." readonly></textarea>
+        <script>
+            var sC = "a";
+            var sTc = 0;
+            var cL = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789-^@[;:],./\\!\"#$%&'()=~|`{+}<>?_ ";
+            var cLl = cL.length
+            var sTs = "A";
+            var tx = "";
+            var sN = 0;
+            document.body.oncontextmenu = function () {return false;}
+            addEventListener("mouseup", (e) => {
+                switch (e.button) {
+                    case 0:
+                        tx += sTs;
+                        document.getElementById("iT").value = tx;
+                        break;
+                    case 1:
+                        tx += " ";
+                        document.getElementById("iT").value = tx;
+                        break;
+                    case 2:
+                        console.log("Right button clicked.");
+                        break;
+                    default:
+                        console.log("UNKNOWN MOUSE BUTTON");
+                        console.log("WAIT WHAT");
+                        console.log("WHAT MOUSE DO YOU USE?!??!?!?!??!?!??!?!??!?!??");
+                    }
+            });
+            function sCt(event) {
+                // event.preventDefault();
+                sTc -= Math.round(event.deltaY / 98);
+                sN = sTc % cLl;
+                if (sN > cLl) {
+                    sTc = 0;
+                    sN = 0;
+                } else if (sN < 0) {
+                    sTc = cLl * 7;
+                    sN = cLl;
+                }
+                sTs = cL[sN];
+                if (sTs === " ") {
+                    document.getElementById("sT").textContent = "Space";
+                } else {
+                    document.getElementById("sT").textContent = `${sTs}`;
+                }
+            }
+            addEventListener('wheel', sCt);
+        </script>
+    </body>
+</html>

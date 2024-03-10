@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <p id="r1">Hi :D</p>
+        <script>
+let lengthRandom = Math.floor(Math.random() * 7) + 6;
+let etxa = "";
+
+let result = '';
+
+function random0f() {
+    result = "";
+    const characters = '0123456789ABCDEF';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < 4) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+function texp(legh) {
+    let avg = 0;
+    while (avg < legh) {
+        random0f()
+        etxa = etxa + ("\\u" + result);
+        etxa = convertUnicodeToUTF8(etxa)
+        document.getElementById("r1").textContent = etxa;
+        avg += 1;
+    }
+}
+
+texp(lengthRandom);
+        </script>
+    </body>
+</html>

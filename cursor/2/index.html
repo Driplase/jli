@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                text-align: center;
+                background-color: #222333;
+                color: white;
+                overflow-x: hidden;
+                overflow-y: hidden;
+            }
+
+            .boing {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                cursor: default;
+                font-size: small;
+            }
+
+            .cursor {
+                transform: translate(15px, 42px); 
+            }
+        </style>
+        <title>/cursor/2/index.html</title>
+    </head>
+    <body>
+        <div class="boing" id="buj">
+            <image src="https://driplase.github.io/cursor/cursor.svg" class="cursor"></image>
+        </div>
+        <p id="status"></p>
+        <script>
+            var bjs = document.getElementById("buj");
+            var bjstyl = bjs.style;
+            var wtSzW = window.innerWidth;
+            var wtSzH = window.innerHeight;
+            var sX = 0; sY = 0;
+            var cX = wtSzW / 2; cY = wtSzH / 2;
+            var cXp = 0; cYp = 0;
+            var curX = wtSzW / 2; curY = wtSzH / 2;
+            var pX = cX; var pY = cY;
+  
+            document.addEventListener("click", function () {
+                document.body.requestPointerLock();
+            });
+
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    curX += event.movementX;
+                    curY += event.movementY;
+                };
+            });
+
+            setInterval(bgs, 5);
+
+            function bgs() {
+                wtSzW = window.innerWidth;
+                wtSzH = window.innerHeight;
+                cXp = curX - (wtSzW / 2);
+                cYp = curY - (wtSzH / 2);
+                sX = sX * 0.97; sY = sY * 0.97;
+                sX += (cX - cXp) / wtSzW
+                sY += (cY - cYp) / wtSzH;
+                /* cX += sX;
+                cY += sY; */
+                cX += (((0 - sX) + (wtSzW / 2)) % wtSzW) - (wtSzW / 2);
+                cY += (((0 - sY) + (wtSzH / 2)) % wtSzH) - (wtSzH / 2);
+                pX = ((cX + (wtSzW / 2)) % wtSzW) - (wtSzW / 2);
+                pY = ((cY + (wtSzH / 2)) % wtSzH) - (wtSzH / 2);
+                bjstyl.transform = "translate(" + (pX - 16) + "px, " + (pY - 45) + "px)";
+                // document.getElementById("status").textContent = "Window Width: " + wtSzW + "px Window Height: " + wtSzH + "px Cursor X: " + curX + " Cursor Y: " + curY + " cX: "+ cX + " cY: " + cY;
+            }
+
+        </script>
+    </body>
+</html>
+
+<!-- nice !-->

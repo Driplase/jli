@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css">
+        <title>Erjandesluta.mp3</title>
+    </head>
+    <body id="bodi">
+        <header>
+            <p class="hs1"><a href="j/">Click this!</a></p>
+        </header>
+        <div class="mpct" id="ctj">
+            <h1>Erjandesluta.mp3</h1>
+            <h4><audio controlslist="nodownload" controls src="../Erjandesluta.mp3"></audio></h4>
+            <p class="small">Not downloadable.</p>
+        </div>
+        <div id="main" class="mained">
+            <h3>I have no idea. I want to sleep. <span id="sleep">Zzzzz<span></h3>
+        </div>
+        <script>
+            var spas = document.getElementById("ctj");
+            var bodies = document.getElementById("bodi");
+            var slep = document.getElementById("sleep");
+            var sLeepa = slep.style;
+            var spasstyl = spas.style;
+            var wtSzW = window.innerWidth;
+            var wtSzH = window.innerHeight;
+            var wMcX = 0;
+            var wMcY = 0;
+            var sEposX = 0;
+            var sEposY = 0;
+            var spassaizX = spas.getBoundingClientRect().width;
+            var spassaizY = spas.getBoundingClientRect().height;
+            var cotIfy7 = 0;
+            var slepY = 0;
+
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    curXpos = event.clientX;
+                    curYpos = event.clientY;
+                };
+            });
+
+            setInterval(ctjm, 5);
+
+            function ctjm() {
+                wtSzW = window.innerWidth;
+                wtSzH = window.innerHeight;
+                grT = document.getElementById("main").style;
+                grT.transform = "translateY(" + wtSzH + "px)";
+                spassaizX = spas.getBoundingClientRect().width;
+                spassaizY = spas.getBoundingClientRect().height;
+                wMcX = curXpos - ( wtSzW / 2 );
+                wMcY = curYpos - ( wtSzH / 2 );
+                sEposX = wMcX / 25;
+                sEposY = wMcY / 25;
+                spasstyl.transform = "translate(" + (sEposX - (spassaizX / 2)) + "px, " + (sEposY - (spassaizY / 2)) + "px)";
+                slepY = Math.sin(cotIfy7) * 70;
+                sLeepa.transform = "translateY(" + slepY + "px)";
+                cotIfy7 += 7;
+            }
+        </script>
+    </body>
+</html>

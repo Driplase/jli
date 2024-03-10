@@ -1,0 +1,52 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <canvas id="cvs">Hello :(</canvas>
+        <p id="c"></p>
+        <script>
+            // setting variable
+            var cXp = null;
+            var cYp = null;
+
+            // cursor pos
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    cXp = event.clientX;
+                    cYp = event.clientY;
+                    
+                };
+            });
+
+            // canvas
+            var canvas = document.getElementById('cvs');
+            var ctx = canvas.getContext('2d');
+
+            // orange cube
+            ctx.fillStyle = 'orange';
+            ctx.beginPath();
+            ctx.moveTo(100, 50);
+            ctx.lineTo(150, 75);
+            ctx.lineTo(200, 50);
+            ctx.lineTo(150, 25);
+            ctx.fill();
+            // blue cube
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.moveTo(100, 50);
+            ctx.lineTo(100, 105);
+            ctx.lineTo(150, 130);
+            ctx.lineTo(150, 75);
+            ctx.fill();
+            // yellow cube
+            ctx.fillStyle = 'yellow';
+            ctx.beginPath();
+            ctx.moveTo(200, 50);
+            ctx.lineTo(200, 105);
+            ctx.lineTo(150, 130);
+            ctx.lineTo(150, 75);
+            ctx.fill();
+        </script>
+</html>

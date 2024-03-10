@@ -1,0 +1,101 @@
+body {
+    animation: bgad 5s linear 0s infinite normal;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    margin: 0px;
+}
+
+@keyframes bgad {
+    0%{
+        background-color: #222333;
+    }
+    50%{
+        background-color: #232323;
+    }
+    100%{
+        background-color: #222333;
+    }
+}
+
+.mpct {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.swdbg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(wsdbg.png);
+    width: 750px; height: 750px;
+    opacity: 0.5;
+}
+
+.small {
+    opacity: 0.5;
+    color: gray;
+    font-size: small;
+}
+
+.wa {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes opcties {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.mained {
+    animation: opcties 2s linear 0s inherit normal;
+}
+
+table.ttt {
+    border: 3px solid #eeeddd;
+    width: 600px; height: 600px;
+    text-align: center;
+    border-spacing: 0px;
+}
+
+input.tb {
+    background-color: #333444;
+    animation: tttbg 5s linear 0s infinite normal;
+    width: 200px; height: 200px;
+    font-size: 125px;
+    color: white;
+} 
+
+#t0, #t1, #t2, #t3, #t4, #t5, #t6, #t7, #t8 {
+    animation: tttbg 5s linear 0s infinite normal;
+    width: 200px; height: 200px;
+}
+
+@keyframes tttbg {
+    0%{
+        background-color: #333444;
+    }
+    50%{
+        background-color: #343434;
+    }
+    100%{
+        background-color: #333444;
+    }
+}
+
+tr.t3bg {
+    animation: tttbg 5s linear 0s infinite normal;
+    display: flex;
+}
+
+.m {
+    font-size: larger;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Start with 1 world, can everything.</title>
+    </head>
+    <div class="ripples">
+    <body id="bodi">
+        <!-- <div id="h2c"></div> -->
+        <header>
+            <p class="hs1"><a href="j/">Click this!</a></p>
+        </header>
+        <div class="bg">
+        <div class="mpct" id="ctj">
+            <h1>Hej!</h1>
+            <h4>Välkommen till min webbplats!</h4>
+            <p class="small">Jag talar inte Svenska.</p>
+        </div>
+        </div>
+        <div id="main" class="mained">
+            <h3>I have no idea. I want to sleep. <span id="sleep">Zzzzz<span></h3>
+        </div>
+        <script>
+            var spas = document.getElementById("ctj");
+            var bodies = document.getElementById("bodi");
+            var slep = document.getElementById("sleep");
+            var sLeepa = slep.style;
+            var spasstyl = spas.style;
+            var wtSzW = window.innerWidth;
+            var wtSzH = window.innerHeight;
+            var wMcX = 0;
+            var wMcY = 0;
+            var sEposX = 0;
+            var sEposY = 0;
+            var spassaizX = spas.getBoundingClientRect().width;
+            var spassaizY = spas.getBoundingClientRect().height;
+            var cotIfy7 = 0;
+            var slepY = 0;
+
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    curXpos = event.clientX;
+                    curYpos = event.clientY;
+                };
+            });
+
+            setInterval(ctjm, 5);
+
+            function ctjm() {
+                wtSzW = window.innerWidth;
+                wtSzH = window.innerHeight;
+                bodies.style.height = `${wtSzH}px`
+                grT = document.getElementById("main").style;
+                grT.transform = "translateY(" + wtSzH + "px)";
+                spassaizX = spas.getBoundingClientRect().width;
+                spassaizY = spas.getBoundingClientRect().height;
+                wMcX = curXpos - ( wtSzW / 2 );
+                wMcY = curYpos - ( wtSzH / 2 );
+                sEposX = wMcX / 25;
+                sEposY = wMcY / 25;
+                spasstyl.transform = "translate(" + (sEposX - (spassaizX / 2)) + "px, " + (sEposY - (spassaizY / 2)) + "px)";
+                slepY = Math.sin(cotIfy7) * 70;
+                sLeepa.transform = "translateY(" + slepY + "px)";
+                cotIfy7 += 7;
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="/f/jquery/jquery.ripples-min.js"></script>
+        <script src="/f/html2canvas/html2canvas.min.js"></script>
+        <script>
+            /* const cns = document.getElementById("h2c");
+            html2canvas(document.querySelector("body")).then(canvas => {
+                cns.appendChild(canvas)
+            }); */
+        $(document).ready(function() {
+            $('div#h2c').ripples({
+            resolution: (wtSzW + wtSzH) / 16,
+            dropRadius: 60,
+            perturbance: 0,
+            interactive: false
+            });
+        }); 
+        addEventListener("mouseup", (e) => {
+            switch (e.button) {
+                case 0: // l
+                    var $b = $('body');
+                    var x = curXpos;
+                    var y = curYpos;
+                    var dropRadius = 150;
+                    var strength = 0.3;
+        
+                    $b.ripples('drop', x, y, dropRadius, strength);
+                    break; 
+                case 1: // w
+                    console.log("Mouse wheel clicked.")
+                    break;
+                case 2: // r
+                    console.log("Right button clicked.");
+                    break;
+                default: // c
+                    console.log("unknown button clicked.");
+                }
+        });
+        </script>
+    </body></div>
+</html>

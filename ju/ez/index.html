@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #222333;
+                color: white;
+                font-family: 'Noto Sans', sans-serif;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="jguy">!-('ω')-!</h1>
+        <script>
+            var yS = 0;
+            var y = 30;
+            var jgy = document.getElementById("jguy").style
+            var jgs = jgy.transform;
+
+            addEventListener("mouseup", (e) => {
+                switch (e.button) {
+                    case 0:
+                        yS = -5;
+                        break;
+                    case 1:
+                        console.log("1 button clicked.");
+                        break;
+                    case 2:
+                        console.log("2 button clicked.");
+                        break;
+                    default:
+                        console.log("UNKNOWN MOUSE BUTTON");
+                        console.log("WAIT WHAT");
+                        console.log("WHAT MOUSE DO YOU USE?!??!?!?!??!?!??!?!??!?!??");
+                    }
+            });
+
+
+            function gr() {
+                yS += 0.1;
+                y += yS;
+                jgy.transform = "translate(0px, " + y + "px)";;
+            }
+
+            setInterval(gr, 10);
+        </script>
+    </body>
+</html>

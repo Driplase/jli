@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                overflow-x: hidden; overflow-y: hidden;
+            }
+        </style>
+        <link rel="stylesheet" href="/style.css">
+        <title>Start with 1 world, can everything.</title>
+    </head>
+    <body id="bodi">
+        <header>
+            <p class="hs1"><span class="box2d"><a href="j/">Click this!</a></span></p>
+        </header>
+        <div class="mpct box2d" id="ctj" >
+            <h1><span >Hej!</span></h1>
+            <h4><span >Välkommen till min webbplats!</span></h4>
+            <p class="small"><span >Jag talar inte Svenska.</span></p>
+        </div>
+        <div id="main" class="mained">
+            <h3><span  class="small box2d">script is not original im freaking brrrr</span></h3>
+        </div>
+        <script>
+            var spas = document.getElementById("ctj");
+            var bodies = document.getElementById("bodi");
+            var slep = document.getElementById("sleep");
+            var sLeepa = slep.style;
+            var spasstyl = spas.style;
+            var wtSzW = window.innerWidth;
+            var wtSzH = window.innerHeight;
+            var wMcX = 0;
+            var wMcY = 0;
+            var sEposX = 0;
+            var sEposY = 0;
+            var spassaizX = spas.getBoundingClientRect().width;
+            var spassaizY = spas.getBoundingClientRect().height;
+            var cotIfy7 = 0;
+            var slepY = 0;
+
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    curXpos = event.clientX;
+                    curYpos = event.clientY;
+                };
+            });
+
+            setInterval(ctjm, 5);
+
+            function ctjm() {
+                wtSzW = window.innerWidth;
+                wtSzH = window.innerHeight;
+                grT = document.getElementById("main").style;
+                grT.transform = "translateY(" + wtSzH + "px)";
+                spassaizX = spas.getBoundingClientRect().width;
+                spassaizY = spas.getBoundingClientRect().height;
+                wMcX = curXpos - ( wtSzW / 2 );
+                wMcY = curYpos - ( wtSzH / 2 );
+                sEposX = wMcX / 25;
+                sEposY = wMcY / 25;
+                spasstyl.transform = "translate(" + (sEposX - (spassaizX / 2)) + "px, " + (sEposY - (spassaizY / 2)) + "px)";
+                slepY = Math.sin(cotIfy7) * 70;
+                sLeepa.transform = "translateY(" + slepY + "px)";
+                cotIfy7 += 7;
+            }
+        </script>
+        <script type="text/javascript" src="box-2d.js"></script>
+        <script type="text/javascript" src="gravity.js"></script>
+    </body>
+</html>

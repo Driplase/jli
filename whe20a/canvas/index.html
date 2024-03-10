@@ -1,0 +1,60 @@
+0<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>draWheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!!!!!!!!!!</title>
+    </head>
+    <canvas id="cvs"></canvas>
+    <body>
+        <script>
+            const canvas = document.getElementById("cvs");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+
+            function degToRad(degrees) {
+                return degrees * Math.PI / 180;
+            };
+
+            var wtSzW = window.innerWidth;
+            var wtSzH = window.innerHeight;
+            var sX = 0; sY = 0;
+            var cX = 0; cY = 0;
+            var cXp = 0; cYp = 0;
+            var curX = 0; curY = 0;
+
+
+            window.addEventListener("load", function () {
+        
+                window.onmousemove = function (event) {
+                    curX = event.clientX;
+                    curY = event.clientY;
+                };
+            });
+
+            setInterval(lpac, 5);
+
+            function lpac() {
+                wtSzW = window.innerWidth;
+                wtSzH = window.innerHeight;
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                cXp = curX - (wtSzW / 2);
+                cYp = curY - (wtSzH / 2);
+                sX = sX * 0.9; sY = sY * 0.9;
+                sX += (cX - cXp) / wtSzW
+                sY += (cY - cYp) / wtSzH;
+                /* cX += sX;
+                cY += sY; */
+                cX += (((0 - sX) + (wtSzW / 2)) % wtSzW) - (wtSzW / 2);
+                cY += (((0 - sY) + (wtSzH / 2)) % wtSzH) - (wtSzH / 2);
+                // bjstyl.transform = "translate(" + (cX - 16) + "px, " + (cY - 45) + "px)";
+
+                ctx.fillStyle = 'rgb(255, 255, 255)';
+                ctx.beginPath();
+                ctx.arc((cX + (wtSzW / 2) - 5), (cY + (wtSzH / 2) - 5), 10, degToRad(0), degToRad(360), false);
+                ctx.fill();
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+/*
+.igm {
+    clip-path: circle(0% at center);
+    filter: blur(0px) brightness(1);
+    transition: all 0.3s;
+}
+  
+.ripple {
+    \/* position: absolute; *\/
+    width: 100%;
+    height: 100%; 
+    background: transparent;
+    opacity: 0;
+    animation: ripple 3s infinite;
+}
+  
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+*/
+
+img {
+	filter: url(#barrel);
+}
+
+.chc {
+    transform: translate(-35px, -30px);
+}

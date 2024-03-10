@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #222333;
+                color: white;
+                font-family: 'Noto Sans', sans-serif;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="jguy">!-('ω')-!</h1>
+        <script>
+            var yS = 0;
+            var y = 500;
+            var jgy = document.getElementById("jguy").style
+            var jgs = jgy.transform;
+
+            function gr() {
+                yS -= 0.005;
+                y += Math.sin(yS) * 35;
+                jgy.transform = "translate(0px, " + y + "px)";;
+            }
+
+            setInterval(gr, 10);
+        </script>
+    </body>
+</html>
