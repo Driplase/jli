@@ -4,6 +4,7 @@ document.title = `${document.title} | ${l}`
 if (l === "j.hide.li") {
     document.getElementById("o0").innerHTML = null;
     document.getElementById("logo").src = "/assets/logo/jhideli.png";
+    document.getElementById("logo").style.width = 120;
 }
 
 var spas = document.getElementById("ctj");
