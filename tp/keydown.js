@@ -1,6 +1,7 @@
-/*
-J'ai aucun idée.
-*/
+// 1
+
+
+// 2
 
 // i dont know about this box
 const box = document.getElementById("mb");
@@ -33,7 +34,7 @@ var s1pv = 0; */
 let s1 = new Audio("/f/assets/audio/sfx/keydown1.wav");
 let s2 = new Audio("/f/assets/audio/sfx/1.wav");
 
-
+// main
 var keyboard = navigator.keyboard;
     keyboard.getLayoutMap().then((keyboardLayoutMap) => {
 
