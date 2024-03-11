@@ -1,7 +1,3 @@
-// 1
-
-
-// 2
 
 // i dont know about this box
 const box = document.getElementById("mb");
