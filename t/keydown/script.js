@@ -54,13 +54,13 @@ function es2() {
 function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
     c = e.code;
     k = e.key;
-    if /*(e.code === "Enter") {
+    if (e.code === "Enter") {
         br += 15;
         bt = bt + "\n"
     } else if (e.code === "Space") {
         bx += 5;
         bt = bt + " "
-    } else if*/ (e.code === "Backspace") {
+    } else if (e.code === "Backspace") {
         bx -= 5;
         bl = bt.length;
         bt = bt.slice(0, (bl - 1));
@@ -79,10 +79,10 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
             }
             rs = true;
         }
-    /*} else if (e.code === "Escape" || e.code === "F5") {
+    } else if (e.code === "Escape" || e.code === "F5") {
         br += 360; by -= 5;
         es3 = true;
-        acv = 0.1;*/
+        acv = 0.1
     } else if (e.code === "ArrowRight") {
         bx += 5;
     } else if (e.code === "ArrowLeft") {
@@ -93,10 +93,10 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         by -= 5;
     } else if (e.key === "Dead") {
         br -= 1.5;
-    /*} else if (e.key === "Hankaku") {
+    } else if (e.key === "Hankaku") {
         z = false;
     } else if (e.key === "Zenkaku") {
-        z = true;*/
+        z = true;
     } else {
         if (k.length === 1) /* keyboardLayoutMap.get(e.code) !== undefined && keyboardLayoutMap.get(e.code) !== "Hankaku"*/ {
             // if (e.)
