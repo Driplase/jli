@@ -101,7 +101,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
             bt = bt + e.key; // keyboardLayoutMap.get(e.code);
             s(s1, 0.8);
         } else {
-            if (e.key === "Control" || e.key === "Alt") {
+            if (e.key === "Control" || e.key === "Alt" || c === "Space") {
                 // emp
             } else {
                 br -= 25; bx -= 15;
