@@ -29,7 +29,7 @@ var tn = 60;
 // ranbdominede " Math.floor(Math.random() * wc) - 1; "
 addEventListener("keydown", y);
 
-function y() {
+function y(e) {
     c = e.code;
     k = e.key;
     if (c === "Space") {
