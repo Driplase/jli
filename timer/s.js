@@ -29,10 +29,11 @@ function clc() {
     rm.setTime(j);
     if (m === 0) {
         zer(nd);
+        dmy(nd);
     } else if (m === 1) {
         zer(rm);
+        dmy(rm);
     }
-    dmy();
     nt = `${rm.getHours()}時間${mi}分`;
     document.getElementById("cl").textContent = nt;
     document.getElementById("d").textContent = d;
@@ -61,16 +62,16 @@ function zer(v) {
         s = v.getSeconds();
     }
     if (v.getMilliseconds() < 10) {
-        ms = "0" + v.getMilliseconds();
-    } else if (v.getMilliseconds() < 100) {
         ms = "00" + v.getMilliseconds();
+    } else if (v.getMilliseconds() < 100) {
+        ms = "0" + v.getMilliseconds();
     } else {
         ms = v.getMilliseconds();
     }
 }
 
-function dmy() {
-    di = rm.getDate() - (m === 1);
+function dmy(v) {
+    di = v.getDate() - (m === 1);
     if (rm.getMonth() > 0 && m === 1) {
         di = "30+";
     }
