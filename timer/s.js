@@ -29,7 +29,7 @@ function clc() {
     document.getElementById("d").textContent = d;
     document.getElementById("s").textContent = `${s}.${rm.getMilliseconds()}秒`;
     if (j < 0) {
-        document.getElementById("cl").textContent = `0時間0分`;
+        document.getElementById("cl").textContent = `0時間00分`;
         document.getElementById("d").textContent = `0日`;
         document.getElementById("s").textContent = `0.000秒`;
     }
