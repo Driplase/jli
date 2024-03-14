@@ -13,6 +13,8 @@ if (decodeURIComponent(prmt[0]) === "t") {
     } else {
         m = 0;
     }
+} else {
+    m = 0;
 }
 var nt = null;
 var j = hdt.getTime() - nd.getTime();
