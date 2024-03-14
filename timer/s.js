@@ -4,17 +4,22 @@ var prmt = qer.split('=');
 var qt = decodeURIComponent(prmt[1]).split("&");
 var nd = new Date();
 var hdt = new Date();
+let m = -1; // -1 = undefined, 0 = clock, 1 = timer
 if (decodeURIComponent(prmt[0]) === "t") {
+    m = 1;
     document.getElementById("ti").textContent = qt[0];
     if (qt[1] === "u") {
         hdt.setTime(parseInt(prmt[2])); // 1710489600000 <= this is what i wanted to use
     }
+} else {
+    m = 0;
 }
 var nt = null;
 var j = hdt.getTime() - nd.getTime();
 var rm = new Date();
 var mi = "";
 var s = "";
+var ms;
 rm.setTime(j);
 var d = "";
 var di = 0;
@@ -22,36 +27,60 @@ function clc() {
     nd = new Date();
     j = hdt.getTime() - nd.getTime();
     rm.setTime(j);
-    zer();
+    if (m === 0) {
+        zer(nd);
+    } else if (m === 1) {
+        zer(rm);
+    }
+    dmy();
     nt = `${rm.getHours()}時間${mi}分`;
     document.getElementById("cl").textContent = nt;
-    dmy()
     document.getElementById("d").textContent = d;
-    document.getElementById("s").textContent = `${s}.${rm.getMilliseconds()}秒`;
+    document.getElementById("s").textContent = `${s}.${ms}秒`;
     if (j < 0) {
         document.getElementById("cl").textContent = `0時間00分`;
         document.getElementById("d").textContent = `0日`;
         document.getElementById("s").textContent = `0.000秒`;
     }
+    if (m === 0) {
+        document.getElementById("d").textContent = null;
+        document.getElementById("cl").textContent = `${nd.getYear}/${nd.getMonth + 1}/${di} ${nd.getHours}:${mi}:${s}.${ms}`;
+        document.getElementById("s").textContent = null;
+    }
 }
 
-function zer() {
-    if (rm.getMinutes() < 10) {
-        mi = "0" + rm.getMinutes();
+function zer(v) {
+    if (v.getMinutes() < 10) {
+        mi = "0" + v.getMinutes();
     } else {
-        mi = rm.getMinutes();
+        mi = v.getMinutes();
     }
-    if (rm.getSeconds() < 10) {
-        s = "0" + rm.getSeconds();
+    if (v.getSeconds() < 10) {
+        s = "0" + v.getSeconds();
     } else {
-        s = rm.getSeconds();
+        s = v.getSeconds();
+    }
+    if (v.getDate() < 10) {
+        s = "0" + v.getSeconds();
+    } else {
+        s = v.getSeconds();
+    }
+    if (v.getMilliseconds() < 10) {
+        ms = "0" + v.getMilliseconds();
+    } else if (v.getMilliseconds() < 100) {
+        ms = "00" + v.getMilliseconds();
+    } else {
+        ms = v.getMilliseconds();
     }
 }
 
 function dmy() {
-    di = rm.getDate() - 1;
-    if (rm.getMonth() > 0) {
-        di = "30+"
+    di = rm.getDate() - (m === 1);
+    if (rm.getMonth() > 0 && m === 1) {
+        di = "30+";
+    }
+    if (di < 10 && m === 0) {
+        di = "0" + di;
     }
     d = `${di}日`;
 }
