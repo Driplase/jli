@@ -6,13 +6,13 @@ var nd = new Date();
 var hdt = new Date();
 let m = -1; // -1 = undefined, 0 = clock, 1 = timer
 if (decodeURIComponent(prmt[0]) === "t") {
-    m = 1;
     document.getElementById("ti").textContent = qt[0];
     if (qt[1] === "u") {
         hdt.setTime(parseInt(prmt[2])); // 1710489600000 <= this is what i wanted to use
+        m = 1;
+    } else {
+        m = 0;
     }
-} else {
-    m = 0;
 }
 var nt = null;
 var j = hdt.getTime() - nd.getTime();
