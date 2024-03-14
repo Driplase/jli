@@ -60,11 +60,6 @@ function zer(v) {
     } else {
         s = v.getSeconds();
     }
-    if (v.getDate() < 10) {
-        s = "0" + v.getSeconds();
-    } else {
-        s = v.getSeconds();
-    }
     if (v.getMilliseconds() < 10) {
         ms = "0" + v.getMilliseconds();
     } else if (v.getMilliseconds() < 100) {
