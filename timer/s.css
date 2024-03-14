@@ -1,0 +1,30 @@
+body {
+    color: white;
+    background-color: #222333;
+    font-family: 'Noto Sans', "Yu Gothic UI", sans-serif;
+    text-align: center;
+}
+
+.r {
+    font-family: "Consolas", monospace;
+}
+
+.tm {
+    transform: translateY(50%);
+}
+
+#cl {
+    font-size: 120px;
+}
+
+#s {
+    font-size: 80px;
+}
+
+#d {
+    font-size: 180px;
+}
+
+.t {
+    font-size: 72px;
+}
