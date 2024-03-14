@@ -44,7 +44,7 @@ function clc() {
     }
     if (m === 0) {
         document.getElementById("d").textContent = null;
-        document.getElementById("cl").textContent = `${nd.getYear}/${nd.getMonth + 1}/${di} ${nd.getHours}:${mi}:${s}.${ms}`;
+        document.getElementById("cl").textContent = `${nd.getYear()}/${nd.getMonth() + 1}/${di} ${nd.getHours()}:${mi}:${s}.${ms}`;
         document.getElementById("s").textContent = null;
     }
 }
