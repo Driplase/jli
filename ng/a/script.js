@@ -49,7 +49,7 @@ function g() {
         cl()
         rst = `${rst}${rs1}`;
     }
-    rtc = `${rtc}\r\n${rst}`;
+    rtc = rtc + "\r\n" + rst;
     document.getElementById("r").textContent = rtc;
 }
 
