@@ -9,6 +9,7 @@ var rs1 = ""; var rs2 = "";
 // var r = document.getElementById("r"); var rt = r.textContent;
 var rtc = "";
 var rst = ""; var fv = 0;
+const r = document.getElementById("r");
 
 function rl() {
     r1 = Math.round(Math.random() * (c.length - 1));
@@ -50,7 +51,7 @@ function g() {
         rst = `${rst}${rs1}`;
     }
     rtc = rtc + "\r\n" + rst;
-    document.getElementById("r").textContent = rtc;
+    r.textContent = rtc;
 }
 
 b.addEventListener("click", g);
