@@ -33,7 +33,7 @@ function cl() {
 
 function g() {
     rst = "";
-    r3 = Math.round(Math.random() * 16) + 1;
+    r3 = Math.round(Math.random() * 9) + 1;
     fv = Math.round(Math.random());
     for (let i = 0; i < r3; i++) {
         if (i !== 0 || fv === 1) {
