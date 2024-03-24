@@ -72,3 +72,7 @@ img.ic {
 .tx {
     color: black;
 }
+
+h1#value {
+    font-size: larger;
+}
