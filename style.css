@@ -84,3 +84,7 @@ img.ic {
 .tx {
     color: black;
 }
+
+.gw {
+    text-shadow: 0px 0px #fff 12px;
+}
