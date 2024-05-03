@@ -22,6 +22,7 @@ let es1; var es2; var es3;
 var c = "";
 var k = "";
 var acv = 0;
+var clp = "";
 // offset
 var ox = 0; var oy = 0;
 // idk ime thing?
@@ -97,21 +98,24 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         z = false;
     } else if (e.key === "Zenkaku") {
         z = true;
+    } else if (e.key === "KeyV" && e.ctrlKey) {
+        navigator.clipboard.readText().then((clp) => {
+            bt = bt + clp;
+        });
+    } else if (k.length === 1) /* keyboardLayoutMap.get(e.code) !== undefined && keyboardLayoutMap.get(e.code) !== "Hankaku"*/ {
+        // if (e.)
+        by += 5;
+        bt = bt + e.key; // keyboardLayoutMap.get(e.code);
+        s(s1, 0.8);
     } else {
-        if (k.length === 1) /* keyboardLayoutMap.get(e.code) !== undefined && keyboardLayoutMap.get(e.code) !== "Hankaku"*/ {
-            // if (e.)
-            by += 5;
-            bt = bt + e.key; // keyboardLayoutMap.get(e.code);
-            s(s1, 0.8);
+        if (e.key === "Control" || e.key === "Alt") {
+            // emp
         } else {
-            if (e.key === "Control" || e.key === "Alt") {
-                // emp
-            } else {
-                br -= 25; bx -= 15;
-            }
+            br -= 25; bx -= 15;
         }
     }
 }
+
 function g(e) {
     if (e.code === "ShiftLeft") {
         ls = false;
