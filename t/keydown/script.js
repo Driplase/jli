@@ -98,7 +98,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         z = false;
     } else if (e.key === "Zenkaku") {
         z = true;
-    } else if (e.key === "KeyV" && e.ctrlKey) {
+    } else if (e.code === "KeyV" && e.ctrlKey) {
         navigator.clipboard.readText().then((clp) => {
             bt = bt + clp;
         });
