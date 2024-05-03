@@ -102,7 +102,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         navigator.clipboard.readText().then((clp) => {
             bt = bt + clp;
             s(s1, 0.8);
-            bx += 40; by += 12;
+            bx += 40; by += 12; br -= 8;
         });
     } else if (k.length === 1) /* keyboardLayoutMap.get(e.code) !== undefined && keyboardLayoutMap.get(e.code) !== "Hankaku"*/ {
         // if (e.)
@@ -113,7 +113,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         if (e.key === "Control" || e.key === "Alt") {
             // emp
         } else {
-            br -= 25; bx -= 15; br -= 8;
+            br -= 25; bx -= 15;
         }
     }
 }
