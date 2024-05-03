@@ -113,7 +113,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         if (e.key === "Control" || e.key === "Alt") {
             // emp
         } else {
-            br -= 25; bx -= 15;
+            br -= 25; bx -= 15; br -= 8;
         }
     }
 }
