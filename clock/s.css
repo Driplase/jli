@@ -25,7 +25,7 @@ body {
 .tm {
     transform: translateY(50%);
 				position: absolute;
-				top: 50%
+				top: 50%;
 }
 
 #cl {
