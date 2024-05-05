@@ -1,7 +1,7 @@
 body {
 	background-color: #111222;
     color: white;
-    animation: bgc 5s ease-in-out 0s infinite normal;
+    animation: bgc 5s ease-in-out 0s infinite;
     font-family: 'Noto Sans', "Yu Gothic UI", sans-serif;
     text-align: center;
 }
@@ -47,7 +47,7 @@ body {
 }
 
 .gw {
-	animation: bgc 5s ease-in-out 0s infinite normal;
+	animation: bgc 5s ease-in-out 0s infinite;
 	text-shadow: 0 0 32px white;
 	/* text-shadow: 0 0 12px white; */
 }
