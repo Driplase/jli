@@ -1,0 +1,67 @@
+body {
+	background-color: #111222;
+    color: white;
+    animation: bgc 5s ease-in-out 0s infinite;
+    font-family: 'Noto Sans', "Yu Gothic UI", sans-serif;
+    text-align: center;
+}
+
+@keyframes bgc {
+	0%{
+    	background-color: #111222;
+	}
+	50%{
+		background-color: #222333;
+	}
+	100%{
+		background-color: #111222; /* #111222 */ 
+	}
+}
+
+.r {
+    font-family: "Consolas", monospace;
+}
+
+.tm {
+    transform: translateY(-57%);
+				position: absolute;
+				top: 50%;
+}
+
+#cl {
+    font-size: 120px;
+}
+
+#s {
+    font-size: 80px;
+}
+
+#d {
+    font-size: 180px;
+}
+
+#n {
+    font-size: 120px;
+}
+
+.t {
+    font-size: 72px;
+}
+
+.gw {
+	animation: gwc 5s ease-in-out 0s infinite;
+	text-shadow: 0 0 32px white;
+	/* text-shadow: 0 0 12px white; */
+}
+
+@keyframes gwc {
+	0%{
+    	text-shadow: 0 0 32px white;
+	}
+	50%{
+		text-shadow: 0 0 28px white;
+	}
+	100%{
+		text-shadow: 0 0 32px white;
+	}
+}
