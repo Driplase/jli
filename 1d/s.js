@@ -1,4 +1,5 @@
-var d = 100;
+var qer = document.location.search.substring(1);
+var prmt = qer.split('=');var d = 100;
 var n = 100;
 var r;
 if (decodeURIComponent(prmt[0]) === "n") {
