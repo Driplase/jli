@@ -1,0 +1,34 @@
+body {
+    animation: bgad 5s linear 0s infinite normal;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    margin: 0px;
+}
+
+@keyframes bgad {
+    0%{
+        background-color: #222333;
+    }
+    50%{
+        background-color: #232323;
+    }
+    100%{
+        background-color: #222333;
+    }
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.con {
+    font-family: 'Inconsolata', monospace;
+}
+
+#bt {
+    white-space: pre;
+}
