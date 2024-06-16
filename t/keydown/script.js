@@ -33,7 +33,8 @@ var s1p = new Tone.PitchShift({pitch: s1pv}).toMaster();
 var s1pv = 0; */
 let s1 = new Audio("/f/assets/audio/sfx/keydown1.wav");
 let s2 = new Audio("/f/assets/audio/sfx/1.wav");
-
+// increase escape deleting speed
+let ads = 0;
 
 var keyboard = navigator.keyboard;
     keyboard.getLayoutMap().then((keyboardLayoutMap) => {
@@ -47,8 +48,9 @@ function es2() {
         es3 = false;
     } else if (es3 === true) {
         bl = bt.length;
-        bt = bt.slice(0, (bl - 1));
+        bt = bt.slice(0, (bl - ads) * ((bl - ads) >= 0));
         s(s2, Math.floor(acv * 100) / 100);
+        ads++;
     }
 }
 
@@ -82,6 +84,7 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         }
     } else if (e.code === "Escape" || e.code === "F5") {
         br += 360; by -= 5;
+        ads = 1;
         es3 = true;
         acv = 0.1
     } else if (e.code === "ArrowRight") {

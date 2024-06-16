@@ -51,7 +51,7 @@ function animate() {
 }
 */
 
-document.addEventListener("keypress", function(event) {
+document.addEventListener("keydown", function(event) {
 		if (event.code == "KeyW") {
 			camera.position.z -= 0.1;
 		}
