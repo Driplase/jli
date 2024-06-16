@@ -52,3 +52,35 @@ function ctjm() {
     spasstyl.transform = "translate(" + iX + "px, " + iY + "px)";
     sLeepa.transform = "translateY(" + slepY + "px)";
 }
+
+let mX = 0; let mY = 0;
+let mR = 0;
+let b = document.body;
+
+document.addEventListener("mousemove", function (event){
+    mX += event.movementX; mY += event.movementY;
+});
+
+function rh() {
+    mX *= 0.97; mY *= 0.97;
+    mR = mX / 16 + mY / 32;
+    b.style.transform = `rotate(${mR / 30}deg)`
+} 
+if (b.offsetWidth <= window.innerWidth) {
+    b.style.overflowX = "hidden";
+} else {
+    b.style.overflowX = "scroll";
+} 
+setInterval(rh, 12);
+
+/*
+    let mX=0;let mY=0;let mR=0;let b=document.body;document.addEventListener("mousemove",function (event){mX+=event.movementX;mY+=event.movementY;});function rh(){mX*=0.97;mY*=0.97;mR=mX/16+mY/32;b.style.transform=`rotate(${mR/30}deg)`;}if(b.offsetWidth<=window.innerWidth){b.style.overflowX="hidden";}else{b.style.overflowX="scroll";}setInterval(rh,12);
+*/
+
+/*
+if (b.offsetHeight <= window.innerHeight) {
+    b.style.overflowY = "hidden";
+} else {
+    b.style.overflowY = "scroll";
+}
+*/

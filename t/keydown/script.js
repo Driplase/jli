@@ -141,8 +141,7 @@ function d() {
     bx -= bx / 50;
     by -= by / 50;
     br -= br / 50;
-    bs.transform = "translate(" + bx + "px, " + by + "px)";
-    bs.rotate = br + "deg";
+    bs.transform = `translate(${bx}px, ${by}px) rotate(${br}deg)`;
     tx = bt.replace(/\n/g,"\r\n");
     btx.textContent = bt;
     // s1pv = Math.floor(Math.random() * 11) - 6;
