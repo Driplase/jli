@@ -28,7 +28,7 @@ const wc = w.length;
 let tn = 60;
 let t = 60;
 let g = false;
-let ip = "";
+var ip = "";
 let i = ""; let posi = 0;
 let b = false; let f = false;
 // ranbdominede " Math.floor(Math.random() * wc) - 1; "
@@ -52,7 +52,7 @@ function v() {
     posi = 0;
     g = true;
     tf = setInterval(function (){
-        tn -= -1
+        tn -= 1;
         if (tn <= 0) {
             clearInterval(iv);
             g = false;
