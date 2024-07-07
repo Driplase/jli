@@ -25,8 +25,7 @@ const w = ["apple", "ant", "a", "an", "alt", "am", "a.m.", "art", "artist", "amm
     "zoo", "zack", "zone", "zero", "zeroes", "zones"];
 
 const wc = w.length;
-let tn = 60;
-let t = 60;
+let tn = 600; let t = 60; let ti = 60;
 var g = false;
 var ip = "";
 let i = ""; let posi = 0;
@@ -42,19 +41,20 @@ function y(e) {
         v();
     }
     if (g === true) {
-        b = true;
+        x();
     }
 }
 
 function v() {
-    tn = 60;
+    tn = 600;
     t = tn + 1;
     f = true;
     posi = 0;
     g = true;
     tf = setInterval(function (){
-        tn -= 0.1;
-        tmr.textContent = `${tn}s`;
+        tn -= 1;
+        ti = tn / 10;
+        tmr.textContent = `${ti}s`;
         if (tn <= 0) {
             clearInterval(iv);
             g = false;
@@ -68,15 +68,6 @@ function v() {
             i = st; ip = "";
             f = false;
         }
-        if (b === true) {
-            if (i[posi] === k) {
-                ip = `${ip}${k}`;
-                posi += 1;
-            } else {
-                bt = bt.slice(0, (bl - 1));
-            }
-            b = false;
-        }
         if (i === ip) {
             f = true;
         }
@@ -86,4 +77,21 @@ function v() {
 function j() {
     st = w[Math.floor(Math.random() * wc) - 1]
     document.getElementById("st").textContent = st;
+}
+
+function x() {
+    if (i[posi] === k && g === true) {
+        ip = `${ip}${k}`;
+        posi += 1;
+    } else {
+        bx -= 5;
+        s(s2, 0.1);
+    }
+}
+
+function s(ty, v) {
+    if (v !== 0) {
+        ty.volume = v;
+        ty.cloneNode(true).play();
+    }
 }

@@ -31,8 +31,8 @@ var z = false;
 /* const s1 = new Tone.Player("/f/assets/audio/sfx/keydown1.wav").sync().start(0);
 var s1p = new Tone.PitchShift({pitch: s1pv}).toMaster();
 var s1pv = 0; */
-let s1 = new Audio("/f/assets/audio/sfx/keydown1.wav");
-let s2 = new Audio("/f/assets/audio/sfx/1.wav");
+var s1 = new Audio("/f/assets/audio/sfx/keydown1.wav");
+var s2 = new Audio("/f/assets/audio/sfx/1.wav");
 
 
 var keyboard = navigator.keyboard;
