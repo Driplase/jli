@@ -69,6 +69,7 @@ function v() {
         if (b === true) {
             if (i[posi] === k) {
                 ip = `${ip}${k}`;
+                posi += 1;
             } else {
                 bt = bt.slice(0, (bl - 1));
             }
