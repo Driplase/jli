@@ -141,7 +141,7 @@ function d() {
     bs.transform = "translate(" + bx + "px, " + by + "px)";
     bs.rotate = br + "deg";
     tx = bt.replace(/\n/g,"\r\n");
-    if (ip === "") {
+    if (ip === "" && g) {
         btx.textContent = " ";
     } else {
         btx.textContent = ip;

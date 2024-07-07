@@ -27,7 +27,7 @@ const w = ["apple", "ant", "a", "an", "alt", "am", "a.m.", "art", "artist", "amm
 const wc = w.length;
 let tn = 60;
 let t = 60;
-let g = false;
+var g = false;
 var ip = "";
 let i = ""; let posi = 0;
 let b = false; let f = false;
