@@ -9,7 +9,7 @@ const w = ["apple", "ant", "a", "an", "alt", "am", "a.m.", "art", "artist", "amm
     "i", "is", "if", "it", "it's", "israel", "i'm", "i've", "i'd", "its", "ingot", "ingots", "i'll", "ice", "ices", "iced", 
     "japan", "james", "jake", "jam", "jack", "jail", "joy", "job", "jobs", "june", "july", "just", 
     "kelp", "keep", "kit", "kine", "key", "keys", "koala", "kind", "kinda", 
-    "lame", "lingo", "lesson", "lessons", "learn", "learns", "learned", "less", "long", "lost", "lose", "life", "lime", "live", "lives", "lie", "lies"
+    "lame", "lingo", "lesson", "lessons", "learn", "learns", "learned", "less", "long", "lost", "lose", "life", "lime", "live", "lives", "lie", "lies",
     "mine", "my", "may", "maybe", "mask", "male", "mag", "mac", "mlit", "mesa", "met", "meet", "meat", "mice",
     "nose", "none", "no", "neon", "nice", "neck", "nope", "nick", "nail",
     "orange", "oranges", "one", "once", "ones", "only", "oscar", "oink", "online", "on", "off", "offline", "ok", "okay", 
