@@ -50,6 +50,7 @@ function v() {
     t = tn + 1;
     f = true;
     posi = 0;
+    g = true;
     tf = setInterval(function (){
         tn -= -1
         if (tn <= 0) {

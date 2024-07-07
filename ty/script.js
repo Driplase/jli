@@ -55,6 +55,7 @@ function es2() {
 function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
     c = e.code;
     k = e.key;
+    bl = bt.length;
     if (e.code === "Enter") {
         br += 15;
         bt = bt + "\n"
@@ -63,7 +64,6 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         bt = bt + " "
     } else if (e.code === "Backspace") {
         bx -= 5;
-        bl = bt.length;
         bt = bt.slice(0, (bl - 1));
         if (bt !== "") {
             s(s2, 0.1);
