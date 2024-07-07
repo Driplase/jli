@@ -31,6 +31,7 @@ var g = false;
 var ip = "";
 let i = ""; let posi = 0;
 let b = false; let f = false;
+const tmr = document.getElementById("tmr");
 // ranbdominede " Math.floor(Math.random() * wc) - 1; "
 addEventListener("keydown", y);
 
@@ -52,13 +53,14 @@ function v() {
     posi = 0;
     g = true;
     tf = setInterval(function (){
-        tn -= 1;
+        tn -= 0.1;
+        tmr.textContent = `${tn}s`;
         if (tn <= 0) {
             clearInterval(iv);
             g = false;
             clearInterval(tf);
         }
-    }, 1000);
+    }, 100);
     iv = setInterval(function (){
         if (f === true) {
             j();

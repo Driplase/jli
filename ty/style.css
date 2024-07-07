@@ -23,6 +23,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 2.4vw;
 }
 
 .con {
@@ -31,4 +32,11 @@ body {
 
 #bt {
     white-space: pre;
+}
+
+.tx {
+    top: 6.9%;
+    position: absolute;
+    left: 6.9%;
+    font-size: 3.2vw;
 }
