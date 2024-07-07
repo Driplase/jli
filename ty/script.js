@@ -141,7 +141,11 @@ function d() {
     bs.transform = "translate(" + bx + "px, " + by + "px)";
     bs.rotate = br + "deg";
     tx = bt.replace(/\n/g,"\r\n");
-    btx.textContent = ip;
+    if (ip === "") {
+        btx.textContent = " ";
+    } else {
+        btx.textContent = ip;
+    }
     // s1pv = Math.floor(Math.random() * 11) - 6;
     acv -= acv / 60;
 }
