@@ -74,7 +74,7 @@ function v() {
 }
 
 function j() {
-    st = w[Math.floor(Math.random() * wc) - 1]
+    st = w[Math.floor(Math.random() * wc) - 0]
     document.getElementById("st").textContent = st;
 }
 
