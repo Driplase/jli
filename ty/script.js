@@ -144,7 +144,7 @@ function d() {
     if (btx.textContent = "" && g) {
         btx.textContent = " ";
     } else {
-        btx.textContent = iu;
+        // btx.textContent = iu;
     }
     // s1pv = Math.floor(Math.random() * 11) - 6;
     acv -= acv / 60;
