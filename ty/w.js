@@ -80,8 +80,7 @@ function j() {
 
 function x() {
     if (i[posi] === k && g === true) {
-        ip = `${ip}${k}`;
-        iu = ip;
+        document.getElementById("bt").textContent = `${ip}${k}`;
         posi += 1;
     } else {
         bx += 5 - Math.round(Math.random() * 10);

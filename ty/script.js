@@ -82,7 +82,6 @@ function k(e) { // f2, f8, f9 is unused function key in browser, hmm interesting
         }
     } else if (e.code === "Escape" || e.code === "F5") {
         br += 360; by -= 5;
-        es3 = true;
         acv = 0.1
     } else if (e.code === "ArrowRight") {
         bx += 5;
