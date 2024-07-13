@@ -84,9 +84,11 @@ function x() {
         document.getElementById("bt").textContent = ip;
         posi += 1;
     } else {
-        bx += 5 - Math.round(Math.random() * 10);
-        by += 5 - Math.round(Math.random() * 10);
-        s(s2, 0.1);
+        if (k.length === 1) {
+            bx += 5 - Math.round(Math.random() * 10);
+            by += 5 - Math.round(Math.random() * 10);
+            s(s2, 0.1);
+        }
     }
 }
 
