@@ -7,6 +7,8 @@
                 display: flex;
                 flex-direction: column;
                 text-align: center;
+                font-family: sans-serif;
+                transition: .5s cubic-bezier(0.25, 1, 0.5, 1);
             }
 
             input#d, input#e, input.tlc {
@@ -35,12 +37,31 @@
             input.tlc {
                 width: 36px;
             }
+
+            input#d, input#e {
+                font-size: 20px;
+            }
+
+            input.tlc, textarea#json {
+                font-family: monospace;
+            }
+
+            input#s1, input#s2 {
+                font-size: 15px;
+            }
+
+            div.sgd {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
         </style>
     </head>
     <body>
         <div>
             <input type="text" class="tlc" id="l1">&nbsp;→&nbsp;<input type="text" class="tlc" id="l2">
         </div>
+        <div id="save"><div class="sgd"><input type="text" class="sgi" id="s1" disabled>&nbsp;→&nbsp;<input type="text" class="sgi" id="s2" disabled></div></div>
         <div>
             <input type="text" id="d" value="">&nbsp;→&nbsp;<input type="text" id="e" value="">
         </div>
@@ -55,7 +76,8 @@
         <script>
             let data = [];
             const d = document.getElementById('d'), E = document.getElementById('e'), J = document.getElementById('json'), sg = document.getElementById('sg'), l = [document.getElementById('l1'), document.getElementById('l2')], U = new URL(location.href), p = new URLSearchParams(U.search)
-            let langCode = [l[0].value, l[1].value]
+            let langCode = [l[0].value, l[1].value], saved = [null, null], S = [document.getElementById('s1'), document.getElementById('s2')]
+            // saved ... ctrl + UP to save things, ctrl + DOWN to pull things
             // ´ ˆ ˋ ¨ ˚ ˉ ˜ ¸ +
             const deads = {
                 a: "aáâàäåāãæ",
@@ -69,10 +91,6 @@
             const u = [p.get('f'), p.get('s')]
             if (u[0]) { l[0].value = u[0], langCode[0] = u[0] }
             if (u[1]) { l[1].value = u[1], langCode[1] = u[1] }
-            /* if (/^c=%5(B|b).+%5(D|d);?\s?(max-age=604800;\s?)?$/.test(document.cookie)) {
-                const R = JSON.parse(decodeURIComponent(document.cookie.match(/^c=%5(B|b).+%5(D|d)/)[0].replace(/^c=/,'')))
-                console.log(R)
-            } */
             
             d.addEventListener('input', e => {
                 const f = data.filter(i => i[langCode[0]].startsWith(d.value.toLowerCase()) && i[langCode[0]] !== d.value.toLowerCase()), x = data.find(i => i[langCode[0]] === d.value.toLowerCase())
@@ -97,6 +115,17 @@
                         let y = d.value.split('');
                         y[s2-1] = z[(z.indexOf(d.value[s2-1]) + Math.min(Math.max(-1, -dy), 1) + z.length) % z.length]
                         d.value = y.join('')
+                        const f = data.filter(i => i[langCode[0]].startsWith(d.value.toLowerCase()) && i[langCode[0]] !== d.value.toLowerCase()), x = data.find(i => i[langCode[0]] === d.value.toLowerCase())
+                    sug(f)
+                    if (x) {
+                        E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = x[langCode[1]]
+                    } else {
+                        d.value !== "" ? E.classList.add('nf') : E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = ""
+                    }
+                    showJSON(data)
+                    refreshParams()
                     }
                 }
             })
@@ -104,22 +133,53 @@
             d.addEventListener('keydown', e => {
                 if (e.code === "ArrowUp") {
                     e.preventDefault()
-                    const s2 = e.target.selectionStart
-                    const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
-                    if (z) {
-                        let y = d.value.split('');
-                        y[s2-1] = z[(z.indexOf(d.value[s2-1]) + 1 + z.length) % z.length]
-                        d.value = y.join('')
+                    if (!e.ctrlKey) {
+                        const s2 = e.target.selectionStart
+                        const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
+                        if (z) {
+                            let y = d.value.split('');
+                            y[s2-1] = z[(z.indexOf(d.value[s2-1]) + 1 + z.length) % z.length]
+                            d.value = y.join('')
+                        }
+                    } else {
+                        saved[0] = d.value.toLowerCase()
+                        refreshSaves()
                     }
+                    const f = data.filter(i => i[langCode[0]].startsWith(d.value.toLowerCase()) && i[langCode[0]] !== d.value.toLowerCase()), x = data.find(i => i[langCode[0]] === d.value.toLowerCase())
+                    sug(f)
+                    if (x) {
+                        E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = x[langCode[1]]
+                    } else {
+                        d.value !== "" ? E.classList.add('nf') : E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = ""
+                    }
+                    showJSON(data)
+                    refreshParams()
                 } else if (e.code === "ArrowDown") {
                     e.preventDefault()
-                    const s2 = e.target.selectionStart
-                    const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
-                    if (z) {
-                        let y = d.value.split('');
-                        y[s2-1] = z[(z.indexOf(d.value[s2-1]) - 1 + z.length) % z.length]
-                        d.value = y.join('')
+                    if (!e.ctrlKey) {
+                        const s2 = e.target.selectionStart
+                        const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
+                        if (z) {
+                            let y = d.value.split('');
+                            y[s2-1] = z[(z.indexOf(d.value[s2-1]) - 1 + z.length) % z.length]
+                            d.value = y.join('')
+                        }
+                    } else {
+                        d.value = saved[0]
                     }
+                    const f = data.filter(i => i[langCode[0]].startsWith(d.value.toLowerCase()) && i[langCode[0]] !== d.value.toLowerCase()), x = data.find(i => i[langCode[0]] === d.value.toLowerCase())
+                    sug(f)
+                    if (x) {
+                        E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = x[langCode[1]]
+                    } else {
+                        d.value !== "" ? E.classList.add('nf') : E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        E.value = ""
+                    }
+                    showJSON(data)
+                    refreshParams()
                 }
             })
 
@@ -151,6 +211,12 @@
                         let y = E.value.split('');
                         y[s2-1] = z[(z.indexOf(E.value[s2-1]) + Math.min(Math.max(-1, -dy), 1) + z.length) % z.length]
                         E.value = y.join('')
+                        if (E.classList.contains('nf')) {
+                            langCode[0] && langCode[1] ? addstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                            E.classList.remove('nf')
+                        } else {
+                            langCode[0] && langCode[1] ? setstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                        }
                     }
                 }
             })
@@ -158,21 +224,43 @@
             E.addEventListener('keydown', e => {
                 if (e.code === "ArrowUp") {
                     e.preventDefault()
-                    const s2 = e.target.selectionStart
-                    const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
-                    if (z) {
-                        let y = E.value.split('');
-                        y[s2-1] = z[(z.indexOf(E.value[s2-1]) + 1 + z.length) % z.length]
-                        E.value = y.join('')
+                    if (!e.ctrlKey) {
+                        const s2 = e.target.selectionStart
+                        const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
+                        if (z) {
+                            let y = E.value.split('');
+                            y[s2-1] = z[(z.indexOf(E.value[s2-1]) + 1 + z.length) % z.length]
+                            E.value = y.join('')
+                        }
+                    } else {
+                        saved[1] = E.value.toLowerCase()
+                        refreshSaves()
+                    }
+                    if (E.classList.contains('nf')) {
+                        langCode[0] && langCode[1] ? addstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                        E.classList.remove('nf')
+                    } else {
+                        langCode[0] && langCode[1] ? setstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
                     }
                 } else if (e.code === "ArrowDown") {
                     e.preventDefault()
-                    const s2 = e.target.selectionStart
-                    const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
-                    if (z) {
-                        let y = E.value.split('');
-                        y[s2-1] = z[(z.indexOf(E.value[s2-1]) - 1 + z.length) % z.length]
-                        E.value = y.join('')
+                    if (!e.ctrlKey) {
+                        const s2 = e.target.selectionStart
+                        const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
+                        if (z) {
+                            let y = E.value.split('');
+                            y[s2-1] = z[(z.indexOf(E.value[s2-1]) - 1 + z.length) % z.length]
+                            E.value = y.join('')
+                        }
+                    } else {
+                        E.value = saved[1]
+                        refreshSaves()
+                    }
+                    if (E.classList.contains('nf')) {
+                        langCode[0] && langCode[1] ? addstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                        E.classList.remove('nf')
+                    } else {
+                        langCode[0] && langCode[1] ? setstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
                     }
                 }
             })
@@ -220,14 +308,14 @@
             }
 
             function inputAnimation(elements) {
-                const s=elements;let k=Array(s.length).fill(0),x=k.slice(),y=k.slice(),r=k.slice(),z=k.slice(),d=Array(s.length).fill(1);for(let i=0;i<s.length;i++)s[i].addEventListener("keydown",e=>{"Enter"===e.code?(r[i]+=(4-2.5*e.repeat)*d[i],x[i]-=(1.2-.72*e.repeat)*d[i],y[i]+=6.4):"Space"===e.code?x[i]+=5*d[i]:"Backspace"===e.code||"KeyX"===e.code&&e.ctrlKey?(x[i]-=(5-3.6*e.repeat)*d[i],"Backspace"===e.code&&(r[i]-=(.6-.3*e.repeat)*d[i],x[i]-=1.5*e.ctrlKey*d[i],z[i]+=(3-2*e.repeat)*e.ctrlKey)):"Shift"===e.key||"Meta"===e.key||"ContextMenu"===e.code?"ShiftLeft"===e.code||"MetaLeft"===e.code?e.repeat||(r[i]-=3.6,x[i]-=3):e.repeat||(r[i]+=3.6,x[i]+=3):"ArrowRight"===e.code?x[i]+=2*d[i]:"ArrowLeft"===e.code?x[i]-=2*d[i]:"ArrowDown"===e.code?y[i]+=2:"ArrowUp"===e.code?y[i]-=2:"Dead"===e.key?r[i]-=1.2*d[i]:"Backquote"===e.code?r[i]+=1.2*d[i]:"KeyV"===e.code&&e.ctrlKey?(x[i]+=24*d[i],y[i]+=10,r[i]+=6.3*d[i]):"KeyA"===e.code&&e.ctrlKey?z[i]+=3.6-2.4*e.repeat:"Tab"===e.code?(x[i]+=(3.2-6.4*e.shiftKey)*d[i],z[i]-=4):1===e.key.length?y[i]+=1.6-1.5*e.repeat:"Control"!==e.key&&"Alt"!==e.key||(1===e.location?e.repeat||(r[i]-=2.4,x[i]-=3):e.repeat||(r[i]+=2.4,x[i]+=3))});setInterval(()=>{for(let e=0;e<s.length;e++)"rtl"===s[e].dir?d[e]=-1:d[e]=1,x[e]-=x[e]/50,y[e]-=y[e]/50,r[e]-=r[e]/50,z[e]-=z[e]/60,s[e].style.transform=`translate(${x[e]}px,${y[e]}px) rotate(${r[e]}deg) scale(${100+z[e]}%)`},5);
+                const s=elements;let k=Array(s.length).fill(0),x=k.slice(),y=k.slice(),r=k.slice(),z=k.slice(),d=Array(s.length).fill(1);for(let i=0;i<s.length;i++)s[i].addEventListener("keydown",e=>{"Enter"===e.code?(r[i]+=(4-2.5*e.repeat)*d[i],x[i]-=(1.2-.72*e.repeat)*d[i],y[i]+=6.4):"Space"===e.code?x[i]+=5*d[i]:"Backspace"===e.code||"KeyX"===e.code&&e.ctrlKey?(x[i]-=(5-3.6*e.repeat)*d[i],"Backspace"===e.code&&(r[i]-=(.6-.3*e.repeat)*d[i],x[i]-=1.5*e.ctrlKey*d[i],z[i]+=(3-2*e.repeat)*e.ctrlKey)):"Shift"===e.key||"Meta"===e.key||"ContextMenu"===e.code?"ShiftLeft"===e.code||"MetaLeft"===e.code?e.repeat||(r[i]-=3.6,x[i]-=3):e.repeat||(r[i]+=3.6,x[i]+=3):"ArrowRight"===e.code?x[i]+=2*d[i]:"ArrowLeft"===e.code?x[i]-=2*d[i]:"ArrowDown"===e.code?y[i]+=2+3*e.ctrlKey:"ArrowUp"===e.code?y[i]-=2+3*e.ctrlKey:"Dead"===e.key?r[i]-=1.2*d[i]:"Backquote"===e.code?r[i]+=1.2*d[i]:"KeyV"===e.code&&e.ctrlKey?(x[i]+=24*d[i],y[i]+=10,r[i]+=6.3*d[i]):"KeyA"===e.code&&e.ctrlKey?z[i]+=3.6-2.4*e.repeat:"Tab"===e.code?(x[i]+=(3.2-6.4*e.shiftKey)*d[i],z[i]-=4):1===e.key.length?y[i]+=1.6-1.5*e.repeat:"Control"!==e.key&&"Alt"!==e.key||(1===e.location?e.repeat||(r[i]-=2.4,x[i]-=3):e.repeat||(r[i]+=2.4,x[i]+=3))});setInterval(()=>{for(let e=0;e<s.length;e++)"rtl"===s[e].dir?d[e]=-1:d[e]=1,x[e]-=x[e]/50,y[e]-=y[e]/50,r[e]-=r[e]/50,z[e]-=z[e]/60,s[e].style.transform=`translate(${x[e]}px,${y[e]}px) rotate(${r[e]}deg) scale(${100+z[e]}%)`},5);
             }
 
             function sug(filtered) {
                 sg.innerHTML = "";
                 const F = filtered.sort((a, b) => a[langCode[0]] < b[langCode[0]] ? -1 : a[langCode[0]] > b[langCode[0]] ? 1 : 0).slice(0, 100)
                 F.forEach(i => {
-                    sg.innerHTML += `<div><input type="text" value="${i[langCode[0]]}" class="sgi" disabled>&nbsp;→&nbsp;<input type="text" value="${i[langCode[1]]}" class="sgi" disabled></div>`
+                    sg.innerHTML += `<div class="sgd"><input type="text" value="${i[langCode[0]]}" class="sgi" disabled>&nbsp;→&nbsp;<input type="text" value="${i[langCode[1]]}" class="sgi" disabled></div>`
                 })
             }
 
@@ -235,15 +323,16 @@
                 p.set('f', langCode[0])
                 p.set('s', langCode[1])
                 history.replaceState(null, "", `?${p.toString()}`)
-                // document.cookie = `c=${encodeURIComponent(JSON.stringify(data))};max-age=604800;`
+            }
+
+            function refreshSaves() {
+                S[0].value = saved[0], S[1].value = saved[1]
             }
 
             showJSON(data)
             inputAnimation([d, E, l[0], l[1]])
 
-            window.addEventListener('beforeunload', e => {
-                J.value !== "[]" ? (e.preventDefault(), e.returnValue = "") : null
-            })
+            window.addEventListener('beforeunload', e => { J.value !== "[]" ? (e.preventDefault(), e.returnValue = "") : null })
         </script>
     </body>
 </html>
