@@ -56,6 +56,16 @@
             let data = [];
             const d = document.getElementById('d'), E = document.getElementById('e'), J = document.getElementById('json'), sg = document.getElementById('sg'), l = [document.getElementById('l1'), document.getElementById('l2')], U = new URL(location.href), p = new URLSearchParams(U.search)
             let langCode = [l[0].value, l[1].value]
+            // ´ ˆ ˋ ¨ ˚ ˉ ˜ ¸ +
+            const deads = {
+                a: "aáâàäåāãæ",
+                e: "eéêèëēȩ",
+                i: "iíîìïīĩı",
+                o: "oóôòöōõøœ",
+                u: "uúûùüūũ",
+                c: "cćĉç",
+                s: "sśŝş"
+            }
             const u = [p.get('f'), p.get('s')]
             if (u[0]) { l[0].value = u[0], langCode[0] = u[0] }
             if (u[1]) { l[1].value = u[1], langCode[1] = u[1] }
@@ -78,6 +88,41 @@
                 refreshParams()
             })
 
+            d.addEventListener('wheel', e => {
+                e.preventDefault()
+                const dy = e.deltaY, s2 = e.target.selectionStart
+                if (s2 > 0) {
+                    const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
+                    if (z) {
+                        let y = d.value.split('');
+                        y[s2-1] = z[(z.indexOf(d.value[s2-1]) + Math.min(Math.max(-1, -dy), 1) + z.length) % z.length]
+                        d.value = y.join('')
+                    }
+                }
+            })
+
+            d.addEventListener('keydown', e => {
+                if (e.code === "ArrowUp") {
+                    e.preventDefault()
+                    const s2 = e.target.selectionStart
+                    const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
+                    if (z) {
+                        let y = d.value.split('');
+                        y[s2-1] = z[(z.indexOf(d.value[s2-1]) + 1 + z.length) % z.length]
+                        d.value = y.join('')
+                    }
+                } else if (e.code === "ArrowDown") {
+                    e.preventDefault()
+                    const s2 = e.target.selectionStart
+                    const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
+                    if (z) {
+                        let y = d.value.split('');
+                        y[s2-1] = z[(z.indexOf(d.value[s2-1]) - 1 + z.length) % z.length]
+                        d.value = y.join('')
+                    }
+                }
+            })
+
             E.addEventListener('input', e => {
                 if (d.value !== "") {
                     if (E.value !== "") {
@@ -95,6 +140,41 @@
                 }
                 showJSON(data)
                 refreshParams()
+            })
+
+            E.addEventListener('wheel', e => {
+                e.preventDefault()
+                const dy = e.deltaY, s2 = e.target.selectionStart
+                if (s2 > 0) {
+                    const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
+                    if (z) {
+                        let y = E.value.split('');
+                        y[s2-1] = z[(z.indexOf(E.value[s2-1]) + Math.min(Math.max(-1, -dy), 1) + z.length) % z.length]
+                        E.value = y.join('')
+                    }
+                }
+            })
+
+            E.addEventListener('keydown', e => {
+                if (e.code === "ArrowUp") {
+                    e.preventDefault()
+                    const s2 = e.target.selectionStart
+                    const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
+                    if (z) {
+                        let y = E.value.split('');
+                        y[s2-1] = z[(z.indexOf(E.value[s2-1]) + 1 + z.length) % z.length]
+                        E.value = y.join('')
+                    }
+                } else if (e.code === "ArrowDown") {
+                    e.preventDefault()
+                    const s2 = e.target.selectionStart
+                    const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
+                    if (z) {
+                        let y = E.value.split('');
+                        y[s2-1] = z[(z.indexOf(E.value[s2-1]) - 1 + z.length) % z.length]
+                        E.value = y.join('')
+                    }
+                }
             })
 
             J.addEventListener('input', e => {
