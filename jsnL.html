@@ -134,12 +134,13 @@
                 if (e.code === "ArrowUp") {
                     e.preventDefault()
                     if (!e.ctrlKey) {
-                        const s2 = e.target.selectionStart
+                        const s2 = e.target.selectionStart, sd = e.target.selectionEnd
                         const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
                         if (z) {
                             let y = d.value.split('');
                             y[s2-1] = z[(z.indexOf(d.value[s2-1]) + 1 + z.length) % z.length]
                             d.value = y.join('')
+                            e.target.selectionStart = s2, e.target.selectionEnd = sd;
                         }
                     } else {
                         saved[0] = d.value.toLowerCase()
@@ -159,12 +160,13 @@
                 } else if (e.code === "ArrowDown") {
                     e.preventDefault()
                     if (!e.ctrlKey) {
-                        const s2 = e.target.selectionStart
+                        const s2 = e.target.selectionStart, sd = e.target.selectionEnd
                         const z = Object.values(deads).find(i => i.includes(d.value[s2-1]));
                         if (z) {
                             let y = d.value.split('');
                             y[s2-1] = z[(z.indexOf(d.value[s2-1]) - 1 + z.length) % z.length]
                             d.value = y.join('')
+                            e.target.selectionStart = s2, e.target.selectionEnd = sd;
                         }
                     } else {
                         d.value = saved[0]
@@ -225,12 +227,13 @@
                 if (e.code === "ArrowUp") {
                     e.preventDefault()
                     if (!e.ctrlKey) {
-                        const s2 = e.target.selectionStart
+                        const s2 = e.target.selectionStart, sd = e.target.selectionEnd
                         const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
                         if (z) {
                             let y = E.value.split('');
                             y[s2-1] = z[(z.indexOf(E.value[s2-1]) + 1 + z.length) % z.length]
                             E.value = y.join('')
+                            e.target.selectionStart = s2, e.target.selectionEnd = sd;
                         }
                     } else {
                         saved[1] = E.value.toLowerCase()
@@ -245,12 +248,13 @@
                 } else if (e.code === "ArrowDown") {
                     e.preventDefault()
                     if (!e.ctrlKey) {
-                        const s2 = e.target.selectionStart
+                        const s2 = e.target.selectionStart, sd = e.target.selectionEnd
                         const z = Object.values(deads).find(i => i.includes(E.value[s2-1]));
                         if (z) {
                             let y = E.value.split('');
                             y[s2-1] = z[(z.indexOf(E.value[s2-1]) - 1 + z.length) % z.length]
                             E.value = y.join('')
+                            e.target.selectionStart = s2, e.target.selectionEnd = sd;
                         }
                     } else {
                         E.value = saved[1]
