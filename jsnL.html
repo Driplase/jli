@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            input#d, input#e, input.tlc {
+                text-transform: lowercase;
+            }
+
+            .nf {
+                background-color: #ffa9a9;
+            }
+
+            textarea#json {
+                width: 95%;
+                height: 90%;
+            }
+
+            div#sg {
+                opacity: .9;
+                display: block;
+                font-size: 13px;
+            }
+
+            input.sgi {
+                font-size: 13px;
+            }
+
+            input.tlc {
+                width: 36px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="text" class="tlc" id="l1">&nbsp;→&nbsp;<input type="text" class="tlc" id="l2">
+        </div>
+        <div>
+            <input type="text" id="d" value="">&nbsp;→&nbsp;<input type="text" id="e" value="">
+        </div>
+        <div id="sg">
+            <!-- <input type="text" value="hi" disabled>&nbsp;→&nbsp;<input type="text" value="sryó" disabled> -->
+        </div>
+        <br>
+        <div style="height: 700px;">
+            <i>json data:</i><br>
+            <textarea id="json"></textarea>
+        </div>
+        <script>
+            let data = [];
+            const d = document.getElementById('d'), E = document.getElementById('e'), J = document.getElementById('json'), sg = document.getElementById('sg'), l = [document.getElementById('l1'), document.getElementById('l2')], U = new URL(location.href), p = new URLSearchParams(U.search)
+            let langCode = [l[0].value, l[1].value]
+            const u = [p.get('f'), p.get('s')]
+            if (u[0]) { l[0].value = u[0], langCode[0] = u[0] }
+            if (u[1]) { l[1].value = u[1], langCode[1] = u[1] }
+            /* if (/^c=%5(B|b).+%5(D|d);?\s?(max-age=604800;\s?)?$/.test(document.cookie)) {
+                const R = JSON.parse(decodeURIComponent(document.cookie.match(/^c=%5(B|b).+%5(D|d)/)[0].replace(/^c=/,'')))
+                console.log(R)
+            } */
+            
+            d.addEventListener('input', e => {
+                const f = data.filter(i => i[langCode[0]].startsWith(d.value.toLowerCase()) && i[langCode[0]] !== d.value.toLowerCase()), x = data.find(i => i[langCode[0]] === d.value.toLowerCase())
+                sug(f)
+                if (x) {
+                    E.classList.contains('nf') ? E.classList.remove('nf') : null
+                    E.value = x[langCode[1]]
+                } else {
+                    d.value !== "" ? E.classList.add('nf') : E.classList.contains('nf') ? E.classList.remove('nf') : null
+                    E.value = ""
+                }
+                showJSON(data)
+                refreshParams()
+            })
+
+            E.addEventListener('input', e => {
+                if (d.value !== "") {
+                    if (E.value !== "") {
+                        if (E.classList.contains('nf')) {
+                            langCode[0] && langCode[1] ? addstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                            E.classList.remove('nf')
+                        } else {
+                            langCode[0] && langCode[1] ? setstr(d.value.toLowerCase(), E.value.toLowerCase()) : null
+                        }
+                    } else {
+                        const t = data.findIndex(i => i[langCode[0]] === d.value.toLowerCase())
+                        t >= 0 ? data.splice(t, 1) : null
+                        E.classList.add('nf')
+                    }
+                }
+                showJSON(data)
+                refreshParams()
+            })
+
+            J.addEventListener('input', e => {
+                try {
+                    JSON.parse(J.value)[0]
+                    data = JSON.parse(J.value)
+                    if (langCode[0] && langCode[1]) {
+                        const t = data.find(i => i[langCode[0]] === d.value.toLowerCase())
+                        if (t) {
+                            E.value = t[langCode[1]]; E.classList.contains('nf') ? E.classList.remove('nf') : null
+                        } else E.value = "", E.classList.add('nf')
+                    }
+                    refreshParams()
+                } catch (e) {
+                    console.error(e)
+                }
+            })
+
+            l[0].addEventListener('input', e => {
+                langCode[0] = l[0].value.toLowerCase()
+                refreshParams()
+            })
+
+            l[1].addEventListener('input', e => {
+                langCode[1] = l[1].value.toLowerCase()
+                refreshParams()
+            })
+
+            function addstr(_1, _2) {
+                const a = data.push({})
+                data[a - 1][langCode[0]] = _1,
+                data[a - 1][langCode[1]] = _2
+            }
+
+            function setstr(_1, _2) {
+                const f = data.find(i => i[langCode[0]] === _1)
+                f[langCode[1]] = _2
+            }
+
+            function showJSON(json) {
+                const j = typeof json !== "object" ? JSON.parse(json) : json
+                J.value = JSON.stringify(json)
+            }
+
+            function inputAnimation(elements) {
+                const s=elements;let k=Array(s.length).fill(0),x=k.slice(),y=k.slice(),r=k.slice(),z=k.slice(),d=Array(s.length).fill(1);for(let i=0;i<s.length;i++)s[i].addEventListener("keydown",e=>{"Enter"===e.code?(r[i]+=(4-2.5*e.repeat)*d[i],x[i]-=(1.2-.72*e.repeat)*d[i],y[i]+=6.4):"Space"===e.code?x[i]+=5*d[i]:"Backspace"===e.code||"KeyX"===e.code&&e.ctrlKey?(x[i]-=(5-3.6*e.repeat)*d[i],"Backspace"===e.code&&(r[i]-=(.6-.3*e.repeat)*d[i],x[i]-=1.5*e.ctrlKey*d[i],z[i]+=(3-2*e.repeat)*e.ctrlKey)):"Shift"===e.key||"Meta"===e.key||"ContextMenu"===e.code?"ShiftLeft"===e.code||"MetaLeft"===e.code?e.repeat||(r[i]-=3.6,x[i]-=3):e.repeat||(r[i]+=3.6,x[i]+=3):"ArrowRight"===e.code?x[i]+=2*d[i]:"ArrowLeft"===e.code?x[i]-=2*d[i]:"ArrowDown"===e.code?y[i]+=2:"ArrowUp"===e.code?y[i]-=2:"Dead"===e.key?r[i]-=1.2*d[i]:"Backquote"===e.code?r[i]+=1.2*d[i]:"KeyV"===e.code&&e.ctrlKey?(x[i]+=24*d[i],y[i]+=10,r[i]+=6.3*d[i]):"KeyA"===e.code&&e.ctrlKey?z[i]+=3.6-2.4*e.repeat:"Tab"===e.code?(x[i]+=(3.2-6.4*e.shiftKey)*d[i],z[i]-=4):1===e.key.length?y[i]+=1.6-1.5*e.repeat:"Control"!==e.key&&"Alt"!==e.key||(1===e.location?e.repeat||(r[i]-=2.4,x[i]-=3):e.repeat||(r[i]+=2.4,x[i]+=3))});setInterval(()=>{for(let e=0;e<s.length;e++)"rtl"===s[e].dir?d[e]=-1:d[e]=1,x[e]-=x[e]/50,y[e]-=y[e]/50,r[e]-=r[e]/50,z[e]-=z[e]/60,s[e].style.transform=`translate(${x[e]}px,${y[e]}px) rotate(${r[e]}deg) scale(${100+z[e]}%)`},5);
+            }
+
+            function sug(filtered) {
+                sg.innerHTML = "";
+                const F = filtered.sort((a, b) => a[langCode[0]] < b[langCode[0]] ? -1 : a[langCode[0]] > b[langCode[0]] ? 1 : 0).slice(0, 100)
+                F.forEach(i => {
+                    sg.innerHTML += `<div><input type="text" value="${i[langCode[0]]}" class="sgi" disabled>&nbsp;→&nbsp;<input type="text" value="${i[langCode[1]]}" class="sgi" disabled></div>`
+                })
+            }
+
+            function refreshParams() {
+                p.set('f', langCode[0])
+                p.set('s', langCode[1])
+                history.replaceState(null, "", `?${p.toString()}`)
+                // document.cookie = `c=${encodeURIComponent(JSON.stringify(data))};max-age=604800;`
+            }
+
+            showJSON(data)
+            inputAnimation([d, E, l[0], l[1]])
+
+            window.addEventListener('beforeunload', e => {
+                J.value !== "[]" ? (e.preventDefault(), e.returnValue = "") : null
+            })
+        </script>
+    </body>
+</html>
